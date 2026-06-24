@@ -20,13 +20,6 @@ import {
 
 import type React from "react";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
@@ -89,10 +82,6 @@ export function ContactSection() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, service: value }));
   };
 
   const handleFocus = (fieldName: string) => {
@@ -366,14 +355,13 @@ export function ContactSection() {
                   staggerAmount={0.1}
                 >
                   <div className="space-y-2 relative">
-                    <Label htmlFor="name" className="text-sm font-medium">
+                    <Label htmlFor="name" className="text-sm font-bold">
                       Name
                     </Label>
                     <div className="relative">
                       <Input
                         id="name"
                         name="name"
-                        placeholder="Your name"
                         value={formData.name}
                         onChange={handleChange}
                         onFocus={() => handleFocus("name")}
@@ -399,7 +387,7 @@ export function ContactSection() {
                     </span>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium">
+                    <Label htmlFor="email" className="text-sm font-bold">
                       Email
                     </Label>
                     <div className="relative">
@@ -433,36 +421,7 @@ export function ContactSection() {
                     </span>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="service" className="text-sm font-medium">
-                      Service
-                    </Label>
-                    <Select
-                      onValueChange={handleSelectChange}
-                      value={formData.service}
-                    >
-                      <SelectTrigger
-                        id="service"
-                        className="w-full border-border focus:border-primary transition-colors"
-                      >
-                        <SelectValue placeholder="Select a service" />
-                      </SelectTrigger>
-                      <SelectContent className="w-full">
-                        <SelectItem value="video-editing">
-                          Video Editing
-                        </SelectItem>
-                        <SelectItem value="3d-animation">
-                          3D Animation
-                        </SelectItem>
-                        <SelectItem value="2d-animation">
-                          2D Animation
-                        </SelectItem>
-                        <SelectItem value="music">Music</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-sm font-medium">
+                    <Label htmlFor="message" className="text-sm font-bold">
                       Message
                     </Label>
                     <div className="relative">
