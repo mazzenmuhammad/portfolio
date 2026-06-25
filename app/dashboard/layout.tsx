@@ -69,8 +69,8 @@ export default function DashboardLayout({
       alwaysVisible: true,
     },
     {
-      name: "Video Editing",
-      href: "/dashboard/video-editing",
+      name: "Videos",
+      href: "/dashboard/videos",
       icon: <Video className="size-4" />,
       id: "video-editing",
       alwaysVisible: false,

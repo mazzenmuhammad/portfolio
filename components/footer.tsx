@@ -16,7 +16,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  ArrowRight,
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
@@ -420,13 +419,10 @@ export function Footer() {
                       </div>
                       <Button
                         type="submit"
-                        className="w-full group"
+                        className="w-full"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Subscribing..." : "Subscribe"}
-                        {!isSubmitting && (
-                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        )}
                       </Button>
                     </form>
                   </>

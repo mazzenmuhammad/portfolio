@@ -317,16 +317,16 @@ export function WavesurferPlayer({
           type="button"
           variant="outline"
           size="icon"
-          className={`h-8 w-8 rounded-full ${
+          className={`h-8 w-8 rounded-full transition-colors ${
             isPlaying ? "bg-primary text-primary-foreground" : ""
           }`}
           onClick={handlePlayPause}
           disabled={!isReady}
         >
           {isPlaying ? (
-            <Pause className="h-4 w-4" />
+            <Pause key="pause-icon" className="h-4 w-4" />
           ) : (
-            <Play className="h-4 w-4" />
+            <Play key="play-icon" className="h-4 w-4" />
           )}
         </Button>
 

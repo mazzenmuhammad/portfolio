@@ -13,7 +13,6 @@ import {
   Phone,
   MapPin,
   CheckCircle,
-  Send,
   Loader2,
   Link as LinkIcon,
 } from "lucide-react";
@@ -361,7 +360,7 @@ export function ContactSection() {
                       <Input
                         id="name"
                         name="name"
-                        placeholder="Your Name"
+                        placeholder="Your name"
                         value={formData.name}
                         onChange={handleChange}
                         onFocus={() => handleFocus("name")}
@@ -395,7 +394,7 @@ export function ContactSection() {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="Your Email"
+                        placeholder="Your email"
                         value={formData.email}
                         onChange={handleChange}
                         onFocus={() => handleFocus("email")}
@@ -464,10 +463,8 @@ export function ContactSection() {
                         ? "Sending..."
                         : "Send Message"}
                     </span>
-                    {formState === "submitting" ? (
+                    {formState === "submitting" && (
                       <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Send className="h-4 w-4" />
                     )}
                   </Button>
                 </StaggeredChildren>
