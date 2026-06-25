@@ -405,8 +405,7 @@ export function Footer() {
                 ) : (
                   <>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Subscribe to our newsletter to receive updates and
-                      creative insights.
+                      Subscribe to our newsletter to receive updates.
                     </p>
                     <form onSubmit={handleSubscribe} className="space-y-3">
                       <div className="relative">

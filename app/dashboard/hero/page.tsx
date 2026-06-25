@@ -30,6 +30,7 @@ export default function HeroPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState("");
 
   const [formData, setFormData] = useState({
     mainHeading: "",
@@ -46,6 +47,7 @@ export default function HeroPage() {
         description: heroContent.description,
         achievements: heroContent.achievements,
       });
+      setImagePreview(heroContent.imageUrl);
     }
   }, [heroContent]);
 
@@ -107,7 +109,9 @@ export default function HeroPage() {
   const handleImageUpload = async (file: File) => {
     try {
       setSelectedFile(file);
-      return URL.createObjectURL(file);
+      const preview = URL.createObjectURL(file);
+      setImagePreview(preview);
+      return preview;
     } catch (error) {
       console.error("Error handling image:", error);
       toast.error("Error handling image", {
@@ -115,6 +119,11 @@ export default function HeroPage() {
       });
       throw error;
     }
+  };
+
+  const handleImageRemove = () => {
+    setSelectedFile(null);
+    setImagePreview("");
   };
 
   const handleImageSave = async () => {
@@ -145,6 +154,7 @@ export default function HeroPage() {
       await updateHeroImage({ imageUrl: url });
 
       setSelectedFile(null);
+      setImagePreview(url);
 
       toast.success("Hero image updated", {
         description: "Your new image has been saved",
@@ -293,8 +303,12 @@ export default function HeroPage() {
           ) : (
             <>
               <ImageUpload
-                value={heroContent.imageUrl}
-                onChange={() => {}}
+                value={imagePreview}
+                onChange={(url) => {
+                  if (!url) {
+                    handleImageRemove();
+                  }
+                }}
                 onUpload={handleImageUpload}
                 disabled={isImageLoading}
               />

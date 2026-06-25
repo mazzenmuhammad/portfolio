@@ -361,6 +361,7 @@ export function ContactSection() {
                       <Input
                         id="name"
                         name="name"
+                        placeholder="Your Name"
                         value={formData.name}
                         onChange={handleChange}
                         onFocus={() => handleFocus("name")}
@@ -394,6 +395,7 @@ export function ContactSection() {
                         id="email"
                         name="email"
                         type="email"
+                        placeholder="Your Email"
                         value={formData.email}
                         onChange={handleChange}
                         onFocus={() => handleFocus("email")}
@@ -426,6 +428,7 @@ export function ContactSection() {
                       <Textarea
                         id="message"
                         name="message"
+                        placeholder="Tell us about your project"
                         rows={4}
                         value={formData.message}
                         onChange={handleChange}

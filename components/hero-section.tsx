@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Circle } from "lucide-react";
+import { Circle } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRef, useState, useEffect } from "react";
 import { useAnimation } from "./animation-provider";
@@ -190,22 +190,7 @@ export function HeroSection() {
                   >
                     <Link href="#contact">
                       <span className="relative z-10 flex items-center gap-2">
-                        Get a Quote
-                        {shouldReduceAnimations ? (
-                          <ArrowRight className="h-4 w-4 ml-1" />
-                        ) : (
-                          <motion.span
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{
-                              duration: 1.5,
-                              repeat: Number.POSITIVE_INFINITY,
-                              repeatType: "reverse",
-                            }}
-                            className="hidden md:block"
-                          >
-                            <ArrowRight className="h-4 w-4" />
-                          </motion.span>
-                        )}
+                        Contact Us
                       </span>
                     </Link>
                   </Button>
@@ -287,15 +272,19 @@ export function HeroSection() {
                 </div>
               </div>
             ) : (
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full flex items-center justify-center">
                 <Image
                   src={heroContent.imageUrl}
                   alt="Social Media Content Creation"
                   fill
-                  className="object-cover rounded-lg shadow-lg"
+                  className="object-contain"
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
                   quality={90}
+                  unoptimized={
+                    heroContent.imageUrl?.endsWith(".svg") ||
+                    heroContent.imageUrl?.includes("image/svg")
+                  }
                 />
               </div>
             )}
