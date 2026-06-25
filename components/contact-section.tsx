@@ -143,8 +143,7 @@ export function ContactSection() {
             </div>
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
-            Ready to elevate your social media content? Get in touch with us to
-            discuss your project.
+            Get in touch with us to discuss your project.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto bg-card/75 backdrop-blur-md p-7">

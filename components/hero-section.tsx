@@ -124,7 +124,7 @@ export function HeroSection() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative pt-32 md:pt-28 pb-16 md:pb-20 overflow-hidden bg-grid"
+      className="relative pt-32 md:pt-28 pb-16 md:pb-20 overflow-hidden"
     >
       <div className="max-w-[1360px] relative z-10 mx-auto px-5 md:px-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
