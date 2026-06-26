@@ -155,10 +155,17 @@ export default function Navigation() {
       id: "contact",
       ariaLabel: "Navigate to contact section",
     },
+    {
+      name: "About",
+      href: "#about",
+      id: "about",
+      ariaLabel: "Navigate to about section",
+    },
   ];
 
   const filteredBaseNavLinks = baseNavLinks.filter((link) => {
-    if (link.id === "hero" || link.id === "contact") return true;
+    if (link.id === "hero" || link.id === "contact" || link.id === "about")
+      return true;
 
     return isSectionVisible(link.id);
   });
