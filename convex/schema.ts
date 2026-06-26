@@ -112,6 +112,8 @@ export default defineSchema({
       threeDAnimations: v.boolean(),
       music: v.boolean(),
     }),
+    aboutText: v.optional(v.string()),
+    footerCopyrightText: v.optional(v.string()),
     updatedAt: v.number(),
   }),
 

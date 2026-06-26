@@ -13,6 +13,9 @@ const DEFAULT_SETTINGS = {
     threeDAnimations: true,
     music: true,
   },
+  aboutText:
+    "Write your bio here. Tell visitors who you are, what you do, and why they should work with you.",
+  footerCopyrightText: "All rights reserved.",
   updatedAt: Date.now(),
 };
 
@@ -150,6 +153,58 @@ export const updateSectionVisibility = mutation({
       return await ctx.db.insert("settings", {
         ...DEFAULT_SETTINGS,
         sectionVisibility: args.sectionVisibility,
+        updatedAt: Date.now(),
+      });
+    }
+  },
+});
+
+// Update About section text
+export const updateAboutText = mutation({
+  args: {
+    aboutText: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const existingSettings = await ctx.db
+      .query("settings")
+      .order("desc")
+      .first();
+
+    if (existingSettings) {
+      return await ctx.db.patch(existingSettings._id, {
+        aboutText: args.aboutText,
+        updatedAt: Date.now(),
+      });
+    } else {
+      return await ctx.db.insert("settings", {
+        ...DEFAULT_SETTINGS,
+        aboutText: args.aboutText,
+        updatedAt: Date.now(),
+      });
+    }
+  },
+});
+
+// Update footer copyright text
+export const updateFooterCopyrightText = mutation({
+  args: {
+    footerCopyrightText: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const existingSettings = await ctx.db
+      .query("settings")
+      .order("desc")
+      .first();
+
+    if (existingSettings) {
+      return await ctx.db.patch(existingSettings._id, {
+        footerCopyrightText: args.footerCopyrightText,
+        updatedAt: Date.now(),
+      });
+    } else {
+      return await ctx.db.insert("settings", {
+        ...DEFAULT_SETTINGS,
+        footerCopyrightText: args.footerCopyrightText,
         updatedAt: Date.now(),
       });
     }

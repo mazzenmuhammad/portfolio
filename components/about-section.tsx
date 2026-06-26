@@ -1,9 +1,13 @@
 "use client";
 
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { AnimatedSection } from "@/components/animated-section";
 import { StaggeredChildren } from "@/components/staggered-children";
 
 export function AboutSection() {
+  const settings = useQuery(api.settings.getSettings);
+
   return (
     <AnimatedSection
       id="about"
@@ -30,10 +34,9 @@ export function AboutSection() {
           </h2>
         </div>
         <StaggeredChildren className="bg-card/75 backdrop-blur-md p-7 rounded-lg">
-          <p className="text-muted-foreground text-sm sm:text-base md:text-lg text-center max-w-2xl mx-auto leading-relaxed">
-            Write your bio here. Tell visitors who you are, what you do, and
-            why they should work with you. You can edit this text directly in
-            the about-section.tsx file.
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg text-center max-w-2xl mx-auto leading-relaxed whitespace-pre-line">
+            {settings?.aboutText ||
+              "Write your bio here. Tell visitors who you are, what you do, and why they should work with you."}
           </p>
         </StaggeredChildren>
       </div>

@@ -90,6 +90,12 @@ const baseNavLinks = [
     id: "contact",
     ariaLabel: "Navigate to contact section",
   },
+  {
+    name: "About",
+    href: "#about",
+    id: "about",
+    ariaLabel: "Navigate to about section",
+  },
 ];
 
 export function Footer() {
@@ -437,8 +443,8 @@ export function Footer() {
             <Skeleton className="h-5 w-64" />
           ) : (
             <p>
-              © {currentYear} {settings?.websiteName || ""}. All rights
-              reserved.
+              {settings?.websiteName || ""} © {currentYear}{" "}
+              {settings?.footerCopyrightText || "All rights reserved."}
             </p>
           )}
         </div>

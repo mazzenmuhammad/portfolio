@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { HexColorPicker } from "react-colorful";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
@@ -34,8 +35,55 @@ export default function SettingsPage() {
   const settings = useQuery(api.settings.getSettings);
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const updateAllSettings = useMutation(api.settings.updateAllSettings);
+  const updateAboutText = useMutation(api.settings.updateAboutText);
+  const updateFooterCopyrightText = useMutation(
+    api.settings.updateFooterCopyrightText
+  );
   const saveImage = useAction(api.files.saveImage);
   const deleteFile = useAction(api.files.deleteFile);
+
+  const [aboutText, setAboutText] = useState("");
+  const [isSavingAbout, setIsSavingAbout] = useState(false);
+
+  const [footerCopyrightText, setFooterCopyrightText] = useState("");
+  const [isSavingFooter, setIsSavingFooter] = useState(false);
+
+  useEffect(() => {
+    if (settings) {
+      setAboutText(settings.aboutText || "");
+      setFooterCopyrightText(settings.footerCopyrightText || "");
+    }
+  }, [settings]);
+
+  const handleSaveAbout = async () => {
+    try {
+      setIsSavingAbout(true);
+      await updateAboutText({ aboutText });
+      toast.success("About section updated");
+    } catch (error) {
+      console.error("Error updating about text:", error);
+      toast.error("Error updating about section", {
+        description: "Please try again",
+      });
+    } finally {
+      setIsSavingAbout(false);
+    }
+  };
+
+  const handleSaveFooterText = async () => {
+    try {
+      setIsSavingFooter(true);
+      await updateFooterCopyrightText({ footerCopyrightText });
+      toast.success("Footer text updated");
+    } catch (error) {
+      console.error("Error updating footer text:", error);
+      toast.error("Error updating footer text", {
+        description: "Please try again",
+      });
+    } finally {
+      setIsSavingFooter(false);
+    }
+  };
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -493,6 +541,87 @@ export default function SettingsPage() {
           </CardFooter>
         </Card>
       </form>
+
+      <Card className="border-l-0 mt-6">
+        <CardHeader>
+          <CardTitle>About Section</CardTitle>
+          <CardDescription>
+            Edit the bio text shown in the About section on your homepage.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {settings === undefined ? (
+            <Skeleton className="h-24 w-full" />
+          ) : (
+            <Textarea
+              value={aboutText}
+              onChange={(e) => setAboutText(e.target.value)}
+              placeholder="Write your bio here..."
+              rows={5}
+            />
+          )}
+        </CardContent>
+        <CardFooter className="justify-end">
+          <Button
+            type="button"
+            onClick={handleSaveAbout}
+            disabled={isSavingAbout || settings === undefined}
+          >
+            {isSavingAbout ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Check className="h-4 w-4" />
+                Save Changes
+              </>
+            )}
+          </Button>
+        </CardFooter>
+      </Card>
+
+      <Card className="border-l-0 mt-6">
+        <CardHeader>
+          <CardTitle>Footer Copyright Text</CardTitle>
+          <CardDescription>
+            This appears next to your website name in the footer, e.g. “
+            {formData.websiteName || "Your Website"} © 2026{" "}
+            {footerCopyrightText || "All rights reserved."}”
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {settings === undefined ? (
+            <Skeleton className="h-10 w-full" />
+          ) : (
+            <Input
+              value={footerCopyrightText}
+              onChange={(e) => setFooterCopyrightText(e.target.value)}
+              placeholder="All rights reserved."
+            />
+          )}
+        </CardContent>
+        <CardFooter className="justify-end">
+          <Button
+            type="button"
+            onClick={handleSaveFooterText}
+            disabled={isSavingFooter || settings === undefined}
+          >
+            {isSavingFooter ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Check className="h-4 w-4" />
+                Save Changes
+              </>
+            )}
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
