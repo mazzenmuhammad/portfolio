@@ -8,6 +8,7 @@ import { VideoSection } from "@/components/video-section";
 import { MusicSection } from "@/components/music-section";
 import { useSectionVisibility } from "@/hooks/use-settings";
 import { ContactSection } from "@/components/contact-section";
+import { AboutSection } from "@/components/about-section";
 import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 import { TwoDAnimationsSection } from "@/components/2d-animations-section";
 import { ThreeDAnimationsSection } from "@/components/3d-animations-section";
@@ -24,6 +25,7 @@ export default function MainPage() {
       {isSectionVisible("3d-animations") && <ThreeDAnimationsSection />}
       {isSectionVisible("music") && <MusicSection />}
       <ContactSection />
+      <AboutSection />
       <Footer />
       <ScrollToTopButton />
     </main>
