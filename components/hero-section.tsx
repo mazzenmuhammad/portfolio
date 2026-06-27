@@ -10,9 +10,21 @@ import { Circle } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRef, useState, useEffect } from "react";
 import { useAnimation } from "./animation-provider";
+import { useSectionVisibility } from "@/hooks/use-settings";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 
 export function HeroSection() {
+  const { isSectionVisible } = useSectionVisibility();
+
+  const firstVisibleSectionHref = isSectionVisible("video-editing")
+    ? "#video-editing"
+    : isSectionVisible("2d-animations")
+      ? "#2d-animations"
+      : isSectionVisible("3d-animations")
+        ? "#3d-animations"
+        : isSectionVisible("music")
+          ? "#music"
+          : "#contact";
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const { prefersReducedMotion } = useAnimation();
@@ -200,7 +212,7 @@ export function HeroSection() {
                     size="lg"
                     className="h-12 border-primary/20 hover:bg-primary/5 hover:border-primary/30 transition-all duration-300"
                   >
-                    <Link href="#video-editing">
+                    <Link href={firstVisibleSectionHref}>
                       <span className="relative z-10">See Our Work</span>
                     </Link>
                   </Button>

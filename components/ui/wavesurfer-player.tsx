@@ -158,9 +158,8 @@ export function WavesurferPlayer({
       try {
         const wavesurfer = WaveSurfer.create({
           container: containerRef.current,
-          waveColor: waveColor || "rgba(255, 255, 255, 0.3)",
-          progressColor:
-            progressColor || primaryColor || "rgba(255, 255, 255, 0.8)",
+          waveColor: waveColor || primaryColor || "#ff3b30",
+          progressColor: progressColor || "rgba(255, 255, 255, 0.95)",
           height: height,
           barWidth: barWidth,
           barGap: barGap,

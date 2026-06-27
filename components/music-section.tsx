@@ -12,10 +12,17 @@ import { AudioLinesIcon, Music } from "lucide-react";
 import { StaggeredChildren } from "./staggered-children";
 import { Card, CardContent } from "@/components/ui/card";
 import { WavesurferPlayer } from "@/components/ui/wavesurfer-player";
+import { oklchToHex, isValidOklch } from "@/lib/color-utils";
 
 export function MusicSection() {
   const musicSectionContent = useQuery(api.music.getMusicSectionContent);
   const musicTracks = useQuery(api.music.getMusicTracks, { limit: 3 });
+  const settings = useQuery(api.settings.getSettings);
+
+  const accentColor =
+    settings?.primaryColor && isValidOklch(settings.primaryColor)
+      ? oklchToHex(settings.primaryColor)
+      : "#ff3b30";
 
   return (
     <AnimatedSection
@@ -115,6 +122,7 @@ export function MusicSection() {
                           barWidth={2}
                           barGap={2}
                           barRadius={3}
+                          waveColor={accentColor}
                           playerId={`music-section-${track._id}`}
                         />
                       </div>

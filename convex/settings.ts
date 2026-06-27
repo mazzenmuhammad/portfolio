@@ -15,7 +15,7 @@ const DEFAULT_SETTINGS = {
   },
   aboutText:
     "Write your bio here. Tell visitors who you are, what you do, and why they should work with you.",
-  footerCopyrightText: "All rights reserved.",
+  footerCopyrightText: "",
   updatedAt: Date.now(),
 };
 
