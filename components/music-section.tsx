@@ -47,8 +47,8 @@ export function MusicSection() {
       className="py-10 md:py-12 bg-gradient-to-b from-background via-background/98 to-background/95 relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
-        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift-slow"></div>
       </div>
       <div className="max-w-[1360px] mx-auto px-5 md:px-10 relative z-10">
         <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
@@ -107,7 +107,7 @@ export function MusicSection() {
               {musicTracks.map((track) => (
                 <Card
                   key={track._id}
-                  className="transition-all bg-muted/30 border-border hover:border-primary/50"
+                  className="transition-all bg-muted/30 border-primary/25 hover:border-primary/60 ornate-frame"
                 >
                   <CardContent className="p-4">
                     <div className="flex flex-col md:flex-row gap-4">

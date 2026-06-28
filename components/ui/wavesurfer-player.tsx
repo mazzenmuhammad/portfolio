@@ -314,30 +314,21 @@ export function WavesurferPlayer({
       <div className="flex items-center gap-2">
         <Button
           type="button"
-          variant="ghost"
+          variant="outline"
           size="icon"
-          style={{
-            backgroundColor: isPlaying
-              ? "rgba(255, 255, 255, 0.95)"
-              : "transparent",
-            border: "1px solid rgba(255, 255, 255, 0.4)",
-          }}
-          className="h-8 w-8 rounded-full shrink-0 hover:bg-white/20"
+          className={cn(
+            "h-9 w-9 rounded-full shrink-0 border-primary/50 transition-all",
+            isPlaying
+              ? "bg-primary text-primary-foreground candle-glow border-primary"
+              : "hover:bg-primary/10 hover:border-primary"
+          )}
           onClick={handlePlayPause}
           disabled={!isReady}
         >
           {isPlaying ? (
-            <Pause
-              className="h-4 w-4"
-              style={{ color: "#000000" }}
-              fill="#000000"
-            />
+            <Pause className="h-4 w-4" fill="currentColor" />
           ) : (
-            <Play
-              className="h-4 w-4"
-              style={{ color: "#ffffff" }}
-              fill="#ffffff"
-            />
+            <Play className="h-4 w-4" fill="currentColor" />
           )}
         </Button>
 

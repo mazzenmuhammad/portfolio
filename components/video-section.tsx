@@ -45,8 +45,8 @@ export function VideoSection() {
       className="py-10 md:py-12 bg-gradient-to-b from-background via-background/98 to-background/95 relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
-        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift-slow"></div>
       </div>
       <div className="max-w-[1360px] mx-auto px-5 md:px-10 relative z-10">
         <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
@@ -125,8 +125,8 @@ export function VideoSection() {
               <Card
                 key={project._id}
                 className={cn(
-                  "overflow-hidden bg-card/50 border-border hover:border-primary/50 pt-0",
-                  "transition-all duration-300 group hover:shadow-lg hover:shadow-primary/5"
+                  "overflow-hidden bg-card/50 border-primary/25 hover:border-primary/60 pt-0 ornate-frame",
+                  "transition-all duration-300 group hover:shadow-lg hover:shadow-primary/15"
                 )}
               >
                 <div
@@ -147,9 +147,12 @@ export function VideoSection() {
                     priority={videoProjects.indexOf(project) === 0}
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <Button size="icon" className="rounded-full">
-                      <Play className="h-6 w-6 text-white" />
+                  <div className="absolute inset-0 bg-black/55 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <Button
+                      size="icon"
+                      className="rounded-full candle-glow border border-primary/60"
+                    >
+                      <Play className="h-6 w-6 text-primary-foreground" />
                       <span className="sr-only">
                         Play {project.title} video
                       </span>
