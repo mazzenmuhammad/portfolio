@@ -168,106 +168,50 @@ export function ContactSection() {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="flex items-center gap-3 group">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Mail className="h-5 w-5 text-primary" />
+                {(contactDetails?.showEmail ?? true) && (
+                  <div className="flex items-center gap-3 group">
+                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <p className="group-hover:text-primary transition-colors">
+                      {contactDetails?.email || "email@support.com"}
+                    </p>
                   </div>
-                  <p className="group-hover:text-primary transition-colors">
-                    {contactDetails?.email || "email@support.com"}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3 group">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Phone className="h-5 w-5 text-primary" />
+                )}
+                {(contactDetails?.showPhone ?? true) && (
+                  <div className="flex items-center gap-3 group">
+                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Phone className="h-5 w-5 text-primary" />
+                    </div>
+                    <p className="group-hover:text-primary transition-colors">
+                      {contactDetails?.phone || "+20 950 306 935"}
+                    </p>
                   </div>
-                  <p className="group-hover:text-primary transition-colors">
-                    {contactDetails?.phone || "+20 950 306 935"}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3 group">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <MapPin className="h-5 w-5 text-primary" />
+                )}
+                {(contactDetails?.showLocation ?? true) && (
+                  <div className="flex items-center gap-3 group">
+                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <MapPin className="h-5 w-5 text-primary" />
+                    </div>
+                    <p className="group-hover:text-primary transition-colors">
+                      {contactDetails?.location || "Mansoura, Egypt"}
+                    </p>
                   </div>
-                  <p className="group-hover:text-primary transition-colors">
-                    {contactDetails?.location || "Mansoura, Egypt"}
-                  </p>
-                </div>
+                )}
               </div>
             )}
-            <div className="space-y-2">
-              <h3 className="text-xl font-bold">Follow Us</h3>
-              <div className="flex gap-4">
-                {socialMediaLinks === undefined ? (
-                  <>
-                    {[1, 2, 3, 4].map((i) => (
-                      <Skeleton key={i} className="h-9 w-9 rounded-full" />
-                    ))}
-                  </>
-                ) : socialMediaLinks.length === 0 ? (
-                  <>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      asChild
-                    >
-                      <a
-                        href="https://instagram.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Instagram className="h-4 w-4" />
-                        <span className="sr-only">Instagram</span>
-                      </a>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      asChild
-                    >
-                      <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Twitter className="h-4 w-4" />
-                        <span className="sr-only">Twitter</span>
-                      </a>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      asChild
-                    >
-                      <a
-                        href="https://youtube.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Youtube className="h-4 w-4" />
-                        <span className="sr-only">YouTube</span>
-                      </a>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      asChild
-                    >
-                      <a
-                        href="https://linkedin.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Linkedin className="h-4 w-4" />
-                        <span className="sr-only">LinkedIn</span>
-                      </a>
-                    </Button>
-                  </>
-                ) : (
-                  socialMediaLinks.map((link) => (
+            {(socialMediaLinks === undefined || socialMediaLinks.length > 0) && (
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold">Follow Us</h3>
+                <div className="flex gap-4">
+                  {socialMediaLinks === undefined ? (
+                    <>
+                      {[1, 2, 3, 4].map((i) => (
+                        <Skeleton key={i} className="h-9 w-9 rounded-full" />
+                      ))}
+                    </>
+                  ) : (
+                    socialMediaLinks.map((link) => (
                     <Button
                       key={link._id}
                       variant="outline"
@@ -288,6 +232,7 @@ export function ContactSection() {
                 )}
               </div>
             </div>
+            )}
           </StaggeredChildren>
           <AnimatePresence mode="wait">
             {contactDetails === undefined ? (

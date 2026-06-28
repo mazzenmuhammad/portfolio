@@ -67,6 +67,7 @@ import {
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { api } from "@/convex/_generated/api";
 import { SiFreelancer } from "react-icons/si";
@@ -211,6 +212,9 @@ function ContactDetailsTab() {
     email: "",
     phone: "",
     location: "",
+    showEmail: true,
+    showPhone: true,
+    showLocation: true,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -221,6 +225,9 @@ function ContactDetailsTab() {
         email: contactDetails.email,
         phone: contactDetails.phone,
         location: contactDetails.location,
+        showEmail: contactDetails.showEmail ?? true,
+        showPhone: contactDetails.showPhone ?? true,
+        showLocation: contactDetails.showLocation ?? true,
       });
     }
   }, [contactDetails]);
@@ -229,20 +236,13 @@ function ContactDetailsTab() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => {
-      const newData = { ...prev, [name]: value };
-      if (
-        contactDetails &&
-        (newData.email !== contactDetails.email ||
-          newData.phone !== contactDetails.phone ||
-          newData.location !== contactDetails.location)
-      ) {
-        setHasChanges(true);
-      } else {
-        setHasChanges(false);
-      }
-      return newData;
-    });
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setHasChanges(true);
+  };
+
+  const handleToggle = (field: "showEmail" | "showPhone" | "showLocation") => {
+    setFormData((prev) => ({ ...prev, [field]: !prev[field] }));
+    setHasChanges(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -254,6 +254,9 @@ function ContactDetailsTab() {
         email: formData.email,
         phone: formData.phone,
         location: formData.location,
+        showEmail: formData.showEmail,
+        showPhone: formData.showPhone,
+        showLocation: formData.showLocation,
       });
       setHasChanges(false);
       toast.success("Contact details updated successfully!");
@@ -292,7 +295,18 @@ function ContactDetailsTab() {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="email">Email Address</Label>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">
+                    Show on website
+                  </span>
+                  <Switch
+                    checked={formData.showEmail}
+                    onCheckedChange={() => handleToggle("showEmail")}
+                  />
+                </div>
+              </div>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -308,7 +322,18 @@ function ContactDetailsTab() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="phone">Phone Number</Label>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">
+                    Show on website
+                  </span>
+                  <Switch
+                    checked={formData.showPhone}
+                    onCheckedChange={() => handleToggle("showPhone")}
+                  />
+                </div>
+              </div>
               <div className="relative">
                 <Phone className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -323,7 +348,18 @@ function ContactDetailsTab() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="location">Location</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="location">Location</Label>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">
+                    Show on website
+                  </span>
+                  <Switch
+                    checked={formData.showLocation}
+                    onCheckedChange={() => handleToggle("showLocation")}
+                  />
+                </div>
+              </div>
               <div className="relative">
                 <MapPin className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input

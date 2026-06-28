@@ -76,6 +76,9 @@ export default defineSchema({
     email: v.string(),
     phone: v.string(),
     location: v.string(),
+    showEmail: v.optional(v.boolean()),
+    showPhone: v.optional(v.boolean()),
+    showLocation: v.optional(v.boolean()),
     updatedAt: v.number(),
   }),
 

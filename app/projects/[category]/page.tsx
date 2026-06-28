@@ -60,8 +60,8 @@ const categoryConfig: Record<
     isMusic: boolean;
   }
 > = {
-  "video-editing": {
-    title: "Video Editing Projects",
+  videos: {
+    title: "Videos Projects",
     icon: <Video className="h-5 w-5" />,
     isMusic: false,
   },
@@ -122,7 +122,7 @@ export default function ProjectsPage() {
 
   const getProjects = (): Project[] | undefined => {
     switch (category) {
-      case "video-editing":
+      case "videos":
         return videoProjects;
       case "2d-animations":
         return twoDAnimationProjects;

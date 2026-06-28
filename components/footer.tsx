@@ -199,78 +199,17 @@ export function Footer() {
                   </p>
                 </div>
               )}
-              <div className="flex gap-4">
-                {socialMediaLinks === undefined ? (
-                  <>
-                    {[1, 2, 3, 4].map((i) => (
-                      <Skeleton key={i} className="h-9 w-9 rounded-full" />
-                    ))}
-                  </>
-                ) : socialMediaLinks.length === 0 ? (
-                  <>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      aria-label="Follow us on Instagram"
-                      asChild
-                    >
-                      <a
-                        href="https://instagram.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Instagram className="h-4 w-4" />
-                      </a>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      aria-label="Follow us on Twitter"
-                      asChild
-                    >
-                      <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Twitter className="h-4 w-4" />
-                      </a>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      aria-label="Subscribe to our YouTube channel"
-                      asChild
-                    >
-                      <a
-                        href="https://youtube.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Youtube className="h-4 w-4" />
-                      </a>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                      aria-label="Connect with us on LinkedIn"
-                      asChild
-                    >
-                      <a
-                        href="https://linkedin.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Linkedin className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  </>
-                ) : (
-                  socialMediaLinks.map((link) => (
+              {(socialMediaLinks === undefined ||
+                socialMediaLinks.length > 0) && (
+                <div className="flex gap-4">
+                  {socialMediaLinks === undefined ? (
+                    <>
+                      {[1, 2, 3, 4].map((i) => (
+                        <Skeleton key={i} className="h-9 w-9 rounded-full" />
+                      ))}
+                    </>
+                  ) : (
+                    socialMediaLinks.map((link) => (
                     <Button
                       key={link._id}
                       variant="outline"
@@ -290,6 +229,7 @@ export function Footer() {
                   ))
                 )}
               </div>
+              )}
             </StaggeredChildren>
             <StaggeredChildren
               className="space-y-6"
@@ -345,47 +285,53 @@ export function Footer() {
                     </>
                   ) : (
                     <>
-                      <li>
-                        <a
-                          href={`mailto:${
-                            contactDetails?.email || "email@support.com"
-                          }`}
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
-                        >
-                          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                            <Mail className="h-4 w-4 text-primary" />
+                      {(contactDetails?.showEmail ?? true) && (
+                        <li>
+                          <a
+                            href={`mailto:${
+                              contactDetails?.email || "email@support.com"
+                            }`}
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
+                          >
+                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                              <Mail className="h-4 w-4 text-primary" />
+                            </div>
+                            <span>
+                              {contactDetails?.email || "email@support.com"}
+                            </span>
+                          </a>
+                        </li>
+                      )}
+                      {(contactDetails?.showPhone ?? true) && (
+                        <li>
+                          <a
+                            href={`tel:${
+                              contactDetails?.phone?.replace(/\s+/g, "") ||
+                              "+20950306935"
+                            }`}
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
+                          >
+                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                              <Phone className="h-4 w-4 text-primary" />
+                            </div>
+                            <span>
+                              {contactDetails?.phone || "+20 950 306 935"}
+                            </span>
+                          </a>
+                        </li>
+                      )}
+                      {(contactDetails?.showLocation ?? true) && (
+                        <li>
+                          <div className="text-sm text-muted-foreground flex items-center gap-2 group">
+                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                              <MapPin className="h-4 w-4 text-primary" />
+                            </div>
+                            <span>
+                              {contactDetails?.location || "Mansoura, Egypt"}
+                            </span>
                           </div>
-                          <span>
-                            {contactDetails?.email || "email@support.com"}
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href={`tel:${
-                            contactDetails?.phone?.replace(/\s+/g, "") ||
-                            "+20950306935"
-                          }`}
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
-                        >
-                          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                            <Phone className="h-4 w-4 text-primary" />
-                          </div>
-                          <span>
-                            {contactDetails?.phone || "+20 950 306 935"}
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <div className="text-sm text-muted-foreground flex items-center gap-2 group">
-                          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                            <MapPin className="h-4 w-4 text-primary" />
-                          </div>
-                          <span>
-                            {contactDetails?.location || "Mansoura, Egypt"}
-                          </span>
-                        </div>
-                      </li>
+                        </li>
+                      )}
                     </>
                   )}
                 </ul>

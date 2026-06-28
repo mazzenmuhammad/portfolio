@@ -179,7 +179,7 @@ export function VideoSection() {
             size="lg"
             className="w-full sm:w-auto"
           >
-            <Link href="/projects/video-editing">
+            <Link href="/projects/videos">
               <Film className="h-4 w-4" />
               <span className="relative z-10">View All Video Projects</span>
             </Link>

@@ -6,6 +6,9 @@ const DEFAULT_CONTACT_DETAILS = {
   email: "email@support.com",
   phone: "+20 950 306 935",
   location: "Mansoura, Egypt",
+  showEmail: true,
+  showPhone: true,
+  showLocation: true,
   updatedAt: Date.now(),
 };
 
@@ -18,7 +21,12 @@ export const getContactDetails = query({
       return DEFAULT_CONTACT_DETAILS;
     }
 
-    return contactDetails;
+    return {
+      ...contactDetails,
+      showEmail: contactDetails.showEmail ?? true,
+      showPhone: contactDetails.showPhone ?? true,
+      showLocation: contactDetails.showLocation ?? true,
+    };
   },
 });
 
@@ -28,6 +36,9 @@ export const updateContactDetails = mutation({
     email: v.string(),
     phone: v.string(),
     location: v.string(),
+    showEmail: v.optional(v.boolean()),
+    showPhone: v.optional(v.boolean()),
+    showLocation: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const existingDetails = await ctx.db.query("contactDetails").first();
@@ -37,6 +48,9 @@ export const updateContactDetails = mutation({
         email: args.email,
         phone: args.phone,
         location: args.location,
+        showEmail: args.showEmail ?? true,
+        showPhone: args.showPhone ?? true,
+        showLocation: args.showLocation ?? true,
         updatedAt: Date.now(),
       });
     } else {
@@ -44,6 +58,9 @@ export const updateContactDetails = mutation({
         email: args.email,
         phone: args.phone,
         location: args.location,
+        showEmail: args.showEmail ?? true,
+        showPhone: args.showPhone ?? true,
+        showLocation: args.showLocation ?? true,
         updatedAt: Date.now(),
       });
     }
