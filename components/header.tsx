@@ -171,10 +171,11 @@ export default function Navigation() {
   });
 
   const navLinks = filteredBaseNavLinks.map((link) => {
-    if (sectionTitles[link.id]) {
+    const titleKey = link.id === "videos" ? "video-editing" : link.id;
+    if (sectionTitles[titleKey]) {
       return {
         ...link,
-        name: sectionTitles[link.id],
+        name: sectionTitles[titleKey],
       };
     }
     return link;
