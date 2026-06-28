@@ -62,8 +62,8 @@ function getSocialIcon(iconName: string) {
 const baseNavLinks = [
   {
     name: "Video Editing",
-    href: "#video-editing",
-    id: "video-editing",
+    href: "#videos",
+    id: "videos",
     ariaLabel: "Navigate to video editing section",
   },
   {

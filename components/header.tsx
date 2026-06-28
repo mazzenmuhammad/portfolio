@@ -127,8 +127,8 @@ export default function Navigation() {
     },
     {
       name: "Video Editing",
-      href: "#video-editing",
-      id: "video-editing",
+      href: "#videos",
+      id: "videos",
       ariaLabel: "Navigate to video editing section",
     },
     {

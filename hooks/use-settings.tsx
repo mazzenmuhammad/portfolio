@@ -76,7 +76,7 @@ export function useSectionVisibility() {
     const { sectionVisibility } = settings;
 
     switch (sectionId) {
-      case "video-editing":
+      case "videos":
         return sectionVisibility.videoEditing;
       case "2d-animations":
         return sectionVisibility.twoDAnimations;

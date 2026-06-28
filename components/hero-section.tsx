@@ -16,8 +16,8 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 export function HeroSection() {
   const { isSectionVisible } = useSectionVisibility();
 
-  const firstVisibleSectionHref = isSectionVisible("video-editing")
-    ? "#video-editing"
+  const firstVisibleSectionHref = isSectionVisible("videos")
+    ? "#videos"
     : isSectionVisible("2d-animations")
       ? "#2d-animations"
       : isSectionVisible("3d-animations")

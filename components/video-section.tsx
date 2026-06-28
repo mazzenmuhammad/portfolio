@@ -41,7 +41,7 @@ export function VideoSection() {
 
   return (
     <AnimatedSection
-      id="video-editing"
+      id="videos"
       className="py-10 md:py-12 bg-gradient-to-b from-background via-background/98 to-background/95 relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">

@@ -14,6 +14,21 @@ import { Card, CardContent } from "@/components/ui/card";
 import { WavesurferPlayer } from "@/components/ui/wavesurfer-player";
 import { oklchToHex, isValidOklch } from "@/lib/color-utils";
 
+function darkenHex(hex: string, factor: number): string {
+  try {
+    const cleaned = hex.replace("#", "");
+    if (!/^[0-9A-Fa-f]{6}$/.test(cleaned)) return hex;
+    const r = Math.round(parseInt(cleaned.substring(0, 2), 16) * factor);
+    const g = Math.round(parseInt(cleaned.substring(2, 4), 16) * factor);
+    const b = Math.round(parseInt(cleaned.substring(4, 6), 16) * factor);
+    const toHex = (n: number) =>
+      Math.max(0, Math.min(255, n)).toString(16).padStart(2, "0");
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+  } catch {
+    return hex;
+  }
+}
+
 export function MusicSection() {
   const musicSectionContent = useQuery(api.music.getMusicSectionContent);
   const musicTracks = useQuery(api.music.getMusicTracks, { limit: 3 });
@@ -23,6 +38,8 @@ export function MusicSection() {
     settings?.primaryColor && isValidOklch(settings.primaryColor)
       ? oklchToHex(settings.primaryColor)
       : "#ff3b30";
+
+  const playedColor = darkenHex(accentColor, 0.45);
 
   return (
     <AnimatedSection
@@ -123,6 +140,7 @@ export function MusicSection() {
                           barGap={2}
                           barRadius={3}
                           waveColor={accentColor}
+                          progressColor={playedColor}
                           playerId={`music-section-${track._id}`}
                         />
                       </div>

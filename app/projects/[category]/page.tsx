@@ -61,7 +61,7 @@ const categoryConfig: Record<
   }
 > = {
   videos: {
-    title: "Videos Projects",
+    title: "Videos",
     icon: <Video className="h-5 w-5" />,
     isMusic: false,
   },
@@ -76,7 +76,7 @@ const categoryConfig: Record<
     isMusic: false,
   },
   music: {
-    title: "Music Tracks",
+    title: "Music",
     icon: <Music className="h-5 w-5" />,
     isMusic: true,
   },

@@ -6,10 +6,10 @@ import { api } from "@/convex/_generated/api";
 import { usePathname } from "next/navigation";
 
 const categoryConfig: Record<string, string> = {
-  videos: "Videos Projects",
+  videos: "Videos",
   "2d-animations": "2D Animation Projects",
   "3d-animations": "3D Animation Projects",
-  music: "Music Tracks",
+  music: "Music",
 };
 
 export function DynamicHead() {

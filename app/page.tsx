@@ -20,7 +20,7 @@ export default function MainPage() {
     <main>
       <Header />
       <HeroSection />
-      {isSectionVisible("video-editing") && <VideoSection />}
+      {isSectionVisible("videos") && <VideoSection />}
       {isSectionVisible("2d-animations") && <TwoDAnimationsSection />}
       {isSectionVisible("3d-animations") && <ThreeDAnimationsSection />}
       {isSectionVisible("music") && <MusicSection />}
