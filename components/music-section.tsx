@@ -11,6 +11,8 @@ import { AnimatedSection } from "./animated-section";
 import { AudioLinesIcon, Music } from "lucide-react";
 import { StaggeredChildren } from "./staggered-children";
 import { Card, CardContent } from "@/components/ui/card";
+import { BurntRope } from "@/components/burnt-rope";
+import { AntiqueFrame } from "@/components/antique-frame";
 import { WavesurferPlayer } from "@/components/ui/wavesurfer-player";
 import { oklchToHex, isValidOklch } from "@/lib/color-utils";
 
@@ -44,7 +46,7 @@ export function MusicSection() {
   return (
     <AnimatedSection
       id="music"
-      className="py-10 md:py-12 bg-gradient-to-b from-background via-background/98 to-background/95 relative overflow-hidden"
+      className="py-10 md:py-12 bg-gradient-to-b from-background via-background/98 to-background/95 relative overflow-hidden arcane-glyphs"
     >
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift"></div>
@@ -71,6 +73,7 @@ export function MusicSection() {
             {musicSectionContent?.description ||
               "Our in-house composers create custom music and sound design that enhances your visual content and creates a memorable audio experience for your audience"}
           </p>
+          <BurntRope className="max-w-xs mx-auto mt-6" />
         </div>
         <div className="max-w-4xl mx-auto">
           {!musicTracks ? (
@@ -105,9 +108,9 @@ export function MusicSection() {
               staggerAmount={0.1}
             >
               {musicTracks.map((track) => (
+                <AntiqueFrame key={track._id} className="rounded-xl">
                 <Card
-                  key={track._id}
-                  className="transition-all bg-muted/30 border-primary/25 hover:border-primary/60 ornate-frame"
+                  className="transition-all bg-muted/30 border-primary/25 hover:border-primary/60"
                 >
                   <CardContent className="p-4">
                     <div className="flex flex-col md:flex-row gap-4">
@@ -147,6 +150,7 @@ export function MusicSection() {
                     </div>
                   </CardContent>
                 </Card>
+                </AntiqueFrame>
               ))}
             </StaggeredChildren>
           )}

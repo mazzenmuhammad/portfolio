@@ -15,6 +15,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AnimatedSection } from "./animated-section";
 import { StaggeredChildren } from "./staggered-children";
 import { Card, CardContent } from "@/components/ui/card";
+import { BurntRope } from "@/components/burnt-rope";
+import { AntiqueFrame } from "@/components/antique-frame";
 
 export function VideoSection() {
   const [selectedVideo, setSelectedVideo] = useState<{
@@ -42,7 +44,7 @@ export function VideoSection() {
   return (
     <AnimatedSection
       id="videos"
-      className="py-10 md:py-12 bg-gradient-to-b from-background via-background/98 to-background/95 relative overflow-hidden"
+      className="py-10 md:py-12 bg-gradient-to-b from-background via-background/98 to-background/95 relative overflow-hidden arcane-glyphs"
     >
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift"></div>
@@ -87,6 +89,7 @@ export function VideoSection() {
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
                 {videoSectionContent.description}
               </p>
+              <BurntRope className="max-w-xs mx-auto mt-6" />
             </>
           )}
         </div>
@@ -122,10 +125,10 @@ export function VideoSection() {
             duration={0.4}
           >
             {videoProjects.map((project) => (
+              <AntiqueFrame key={project._id} className="rounded-xl">
               <Card
-                key={project._id}
                 className={cn(
-                  "overflow-hidden bg-card/50 border-primary/25 hover:border-primary/60 pt-0 ornate-frame",
+                  "overflow-hidden bg-card/50 border-primary/25 hover:border-primary/60 pt-0",
                   "transition-all duration-300 group hover:shadow-lg hover:shadow-primary/15"
                 )}
               >
@@ -168,6 +171,7 @@ export function VideoSection() {
                   </p>
                 </CardContent>
               </Card>
+              </AntiqueFrame>
             ))}
           </StaggeredChildren>
         )}

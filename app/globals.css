@@ -39,34 +39,34 @@
 }
 
 .dark {
-  --background: oklch(0.085 0.018 300);
+  --background: oklch(0.08 0 0);
   --foreground: oklch(0.92 0.02 75);
-  --card: oklch(0.125 0.022 300);
+  --card: oklch(0.12 0 0);
   --card-foreground: oklch(0.92 0.02 75);
-  --popover: oklch(0.12 0.022 300);
+  --popover: oklch(0.115 0 0);
   --popover-foreground: oklch(0.92 0.02 75);
   --primary: oklch(0.72 0.11 75);
-  --primary-foreground: oklch(0.12 0.02 300);
-  --secondary: oklch(0.17 0.025 300);
+  --primary-foreground: oklch(0.12 0.02 75);
+  --secondary: oklch(0.16 0 0);
   --secondary-foreground: oklch(0.92 0.02 75);
-  --muted: oklch(0.15 0.022 300);
-  --muted-foreground: oklch(0.64 0.035 75);
-  --accent: oklch(0.2 0.05 300);
+  --muted: oklch(0.14 0 0);
+  --muted-foreground: oklch(0.64 0.03 75);
+  --accent: oklch(0.19 0.015 75);
   --accent-foreground: oklch(0.92 0.02 75);
   --destructive: oklch(0.55 0.2 25);
   --border: oklch(0.72 0.11 75 / 22%);
   --input: oklch(0.72 0.11 75 / 12%);
   --ring: oklch(0.72 0.11 75 / 50%);
   --chart-1: oklch(0.72 0.11 75);
-  --chart-2: oklch(0.5 0.08 300);
+  --chart-2: oklch(0.45 0 0);
   --chart-3: oklch(0.55 0.2 25);
   --chart-4: oklch(0.6 0.09 60);
-  --chart-5: oklch(0.4 0.05 280);
-  --sidebar: oklch(0.1 0.02 300);
+  --chart-5: oklch(0.35 0 0);
+  --sidebar: oklch(0.07 0 0);
   --sidebar-foreground: oklch(0.92 0.02 75);
   --sidebar-primary: oklch(0.72 0.11 75);
-  --sidebar-primary-foreground: oklch(0.12 0.02 300);
-  --sidebar-accent: oklch(0.17 0.025 300);
+  --sidebar-primary-foreground: oklch(0.12 0.02 75);
+  --sidebar-accent: oklch(0.16 0 0);
   --sidebar-accent-foreground: oklch(0.92 0.02 75);
   --sidebar-border: oklch(0.72 0.11 75 / 18%);
   --sidebar-ring: oklch(0.72 0.11 75 / 40%);
@@ -196,4 +196,20 @@
     color-mix(in oklch, var(--primary) 15%, transparent),
     transparent
   );
+}
+
+.arcane-glyphs {
+  position: relative;
+}
+
+.arcane-glyphs::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23c9a463' stroke-width='1' font-family='serif'%3E%3Ctext x='14' y='30' font-size='18' transform='rotate(-8 14 30)' fill='%23c9a463' stroke='none'%3E%CF%87%3C/text%3E%3Ctext x='80' y='14' font-size='12' transform='rotate(12 80 14)' fill='%23c9a463' stroke='none'%3EM%3C/text%3E%3Ctext x='150' y='40' font-size='20' transform='rotate(-15 150 40)' fill='%23c9a463' stroke='none'%3E%E2%98%BD%3C/text%3E%3Ctext x='230' y='25' font-size='14' transform='rotate(6 230 25)' fill='%23c9a463' stroke='none'%3E%CE%A9%3C/text%3E%3Ctext x='280' y='70' font-size='16' transform='rotate(-10 280 70)' fill='%23c9a463' stroke='none'%3E%E2%98%BF%3C/text%3E%3Ctext x='40' y='100' font-size='13' transform='rotate(9 40 100)' fill='%23c9a463' stroke='none'%3ER%3C/text%3E%3Ctext x='110' y='120' font-size='22' transform='rotate(-5 110 120)' fill='%23c9a463' stroke='none'%3E%E2%9C%A6%3C/text%3E%3Ctext x='190' y='105' font-size='15' transform='rotate(14 190 105)' fill='%23c9a463' stroke='none'%3E%CE%9E%3C/text%3E%3Ctext x='260' y='140' font-size='17' transform='rotate(-7 260 140)' fill='%23c9a463' stroke='none'%3E%E2%9C%A7%3C/text%3E%3Ctext x='10' y='170' font-size='14' transform='rotate(11 10 170)' fill='%23c9a463' stroke='none'%3EV%3C/text%3E%3Ctext x='90' y='190' font-size='19' transform='rotate(-12 90 190)' fill='%23c9a463' stroke='none'%3E%E2%98%BE%3C/text%3E%3Ctext x='170' y='175' font-size='13' transform='rotate(7 170 175)' fill='%23c9a463' stroke='none'%3E%CE%94%3C/text%3E%3Ctext x='240' y='200' font-size='21' transform='rotate(-9 240 200)' fill='%23c9a463' stroke='none'%3E%E2%9C%A4%3C/text%3E%3Ctext x='300' y='230' font-size='12' transform='rotate(15 300 230)' fill='%23c9a463' stroke='none'%3EX%3C/text%3E%3Ctext x='30' y='240' font-size='16' transform='rotate(-6 30 240)' fill='%23c9a463' stroke='none'%3E%CE%A3%3C/text%3E%3Ctext x='120' y='260' font-size='14' transform='rotate(10 120 260)' fill='%23c9a463' stroke='none'%3EQ%3C/text%3E%3Ctext x='200' y='275' font-size='20' transform='rotate(-13 200 275)' fill='%23c9a463' stroke='none'%3E%E2%9D%96%3C/text%3E%3Ctext x='270' y='300' font-size='13' transform='rotate(8 270 300)' fill='%23c9a463' stroke='none'%3E%CE%A8%3C/text%3E%3Ctext x='60' y='300' font-size='17' transform='rotate(-11 60 300)' fill='%23c9a463' stroke='none'%3E%E2%98%BC%3C/text%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 320px 320px;
 }
