@@ -12,7 +12,6 @@ import { useRef, useState, useEffect } from "react";
 import { useAnimation } from "./animation-provider";
 import { useSectionVisibility } from "@/hooks/use-settings";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { Candle } from "@/components/candle";
 
 export function HeroSection() {
   const { isSectionVisible } = useSectionVisibility();
@@ -139,10 +138,6 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative pt-32 md:pt-28 pb-16 md:pb-20 overflow-hidden"
     >
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
-        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary/10 blur-3xl rounded-full smoke-drift-slow"></div>
-      </div>
       <div className="max-w-[1360px] relative z-10 mx-auto px-5 md:px-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
           <motion.div
@@ -306,11 +301,6 @@ export function HeroSection() {
               </div>
             )}
           </motion.div>
-        </div>
-        <div className="flex items-end justify-center gap-6 sm:gap-10 mt-10 md:mt-14 opacity-90">
-          <Candle height={56} delay={0} />
-          <Candle height={78} delay={0.4} />
-          <Candle height={62} delay={0.8} />
         </div>
       </div>
     </section>
