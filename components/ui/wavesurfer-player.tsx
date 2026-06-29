@@ -4,8 +4,6 @@
 import WaveSurfer from "wavesurfer.js";
 
 import { cn } from "@/lib/utils";
-import { Play, Pause } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useAudioPlayer } from "@/components/audio-player-context";
@@ -312,25 +310,30 @@ export function WavesurferPlayer({
   return (
     <div className={cn("w-full space-y-2", className)}>
       <div className="flex items-center gap-2">
-        <Button
+        <button
           type="button"
-          variant="outline"
-          size="icon"
-          className={cn(
-            "h-9 w-9 rounded-full shrink-0 border-primary/50 transition-all",
-            isPlaying
-              ? "bg-primary text-primary-foreground candle-glow border-primary"
-              : "hover:bg-primary/10 hover:border-primary"
-          )}
+          data-playing={isPlaying ? "true" : "false"}
           onClick={handlePlayPause}
           disabled={!isReady}
+          className={cn(
+            "h-9 w-9 rounded-full shrink-0 border border-primary/50 flex items-center justify-center transition-all duration-150",
+            isPlaying
+              ? "bg-primary text-primary-foreground candle-glow border-primary"
+              : "bg-transparent text-foreground hover:bg-primary/10 hover:border-primary"
+          )}
+          style={{ minWidth: 36, minHeight: 36 }}
         >
           {isPlaying ? (
-            <Pause className="h-4 w-4" fill="currentColor" />
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+              <rect x="2" y="2" width="4" height="12" rx="1" />
+              <rect x="10" y="2" width="4" height="12" rx="1" />
+            </svg>
           ) : (
-            <Play className="h-4 w-4" fill="currentColor" />
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+              <path d="M4 2.5l10 5.5-10 5.5V2.5z" />
+            </svg>
           )}
-        </Button>
+        </button>
 
         <div className="flex-1 space-y-1">
           <div className="flex justify-between text-xs text-muted-foreground">
